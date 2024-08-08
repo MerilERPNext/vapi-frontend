@@ -1,7 +1,7 @@
 const Formbuilder = () => {
     return (
         <div>
-            <h1>form1 builder</h1>
+            <p className={"tw-text-3xl"}>form1 builder</p>
         </div>
     );
 };
