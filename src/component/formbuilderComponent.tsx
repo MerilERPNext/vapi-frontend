@@ -12,11 +12,12 @@ const FormbuilderComponent = () => {
                     baseUrl: window.location.origin,
                 }
             );
-            builder.instance.on("change",()=>{
-                console.log("change")
+            builder.instance.on("change", () => {
+                // @ts-ignore
+                window.cur_frm.set_value("custom_form_data", JSON.stringify(builder.instance.form))
             })
         }
-    },[])
+    }, [])
 
     return (
         <div>
