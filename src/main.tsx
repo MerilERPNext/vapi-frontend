@@ -4,5 +4,10 @@ import './index.css'
 import reactToWebComponent from 'react-to-webcomponent'
 import FormbuilderComponent from "./component/formbuilderComponent.tsx";
 
+declare global {
+    interface Window {
+        cur_frm: any
+    }
+}
 
 customElements.define('form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))

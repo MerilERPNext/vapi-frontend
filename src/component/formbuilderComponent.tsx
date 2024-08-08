@@ -7,13 +7,12 @@ const FormbuilderComponent = () => {
         if (formBuilder.current) {
             const builder = new FormBuilder(
                 formBuilder.current,
-                {},
+                JSON.parse(window.cur_frm.doc.custom_form_data || '{}'),
                 {
                     baseUrl: window.location.origin,
                 }
             );
             builder.instance.on("change", () => {
-                // @ts-ignore
                 window.cur_frm.set_value("custom_form_data", JSON.stringify(builder.instance.form))
             })
         }
