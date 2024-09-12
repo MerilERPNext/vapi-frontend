@@ -11,5 +11,5 @@ declare global {
     }
 }
 
-customElements.define('form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
+customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
 customElements.define('quality-control', reactToWebComponent(QualityControl, React, ReactDOM))
