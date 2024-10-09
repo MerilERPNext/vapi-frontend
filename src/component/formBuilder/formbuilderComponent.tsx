@@ -9,7 +9,7 @@ const FormbuilderComponent = () => {
                 formBuilder.current,
                 JSON.parse(window.cur_frm.doc.custom_form_data || '{}'),
                 {
-                    baseUrl: window.location.origin,
+                    baseUrl: window?.location?.origin || '',
                 }
             );
             builder.instance.on("change", () => {

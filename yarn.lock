@@ -1433,10 +1433,10 @@ foreground-child@^3.1.0:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
 
-formiojs@^4.19.5:
-  version "4.19.5"
-  resolved "https://registry.npmjs.org/formiojs/-/formiojs-4.19.5.tgz"
-  integrity sha512-jkFothZR+Fz85br6gzneHhOXf4MZJYyheBtDL3k9NdjOaPhRsfyQZuGaWtvoMCYvZNYWcERoD6UtUwEdyMMY1w==
+formiojs@^4.21.4:
+  version "4.21.4"
+  resolved "https://registry.yarnpkg.com/formiojs/-/formiojs-4.21.4.tgz#a79856a529afbe023b6a9a7b09ac366c89de0a54"
+  integrity sha512-USw5aszDXz2fMeZtJypy0E+beLDL42mpQ9ewcOzk3jxvnIGID4Um7TaxZ15thFBD8JkzrpvJi9S+w7WWhRQ1gw==
   dependencies:
     "@formio/bootstrap3" "2.12.4-rc.1"
     "@formio/choices.js" "10.2.1"
@@ -1461,6 +1461,7 @@ formiojs@^4.19.5:
     fetch-ponyfill "^7.1.0"
     i18next "22.4.12"
     idb "^7.1.1"
+    inputmask "^5.0.9"
     ismobilejs "^1.1.1"
     json-logic-js "^2.0.2"
     jstimezonedetect "^1.0.7"
@@ -1605,6 +1606,11 @@ imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
   integrity sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==
+
+inputmask@^5.0.9:
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.9.tgz#7bf4e83f5e199c88c0edf28545dc23fa208ef4be"
+  integrity sha512-s0lUfqcEbel+EQXtehXqwCJGShutgieOaIImFKC/r4reYNvX3foyrChl6LOEvaEgxEbesePIrw1Zi2jhZaDZbQ==
 
 is-array@^1.0.1:
   version "1.0.1"
