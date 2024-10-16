@@ -5,6 +5,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(() => {
     return {
         plugins: [react()],
+        // apply proxy for / url
+        server: {
+            proxy: {
+                "/api": {
+                    target: "https://hybrow-manufacturing.frappe.cloud",
+                    changeOrigin: true,
+                    rewrite: (path) => path.replace(/^\/api/, '/api'),
+                }
+            }
+        },
         build: {
             rollupOptions: {
                 output: {
