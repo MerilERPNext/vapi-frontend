@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.flow-chart {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 20px;
+    background: linear-gradient(to right, #f9fafb, #f3f4f6);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 16px;
+}
+
+.flow-node {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.node {
+    min-width: 100px;
+    /*max-width: 160px;*/
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.connector {
+    width: 60px;
+    height: 2px;
+    background-color: transparent;
+    border-top: 2px solid;
+}
