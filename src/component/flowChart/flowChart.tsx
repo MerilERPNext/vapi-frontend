@@ -6,22 +6,22 @@ interface FlowChartItem {
 }
 
 const statusColors: Record<Status, { background: string; text: string; border: string }> = {
-    disabled: { background: '#d1d5db', text: '#4b5563', border: '#9ca3af' },
-    active: { background: '#3b82f6', text: '#ffffff', border: '#2563eb' },
-    done: { background: '#10b981', text: '#ffffff', border: '#16a34a' },
+    disabled: {background: '#d1d5db', text: '#4b5563', border: '#9ca3af'},
+    active: {background: '#3b82f6', text: '#ffffff', border: '#2563eb'},
+    done: {background: '#10b981', text: '#ffffff', border: '#16a34a'},
 };
 
-const defaultColor = { background: '#f3f4f6', text: '#111827', border: '#e5e7eb' };
+const defaultColor = {background: '#f3f4f6', text: '#111827', border: '#e5e7eb'};
 
 const FlowChartNode = ({
                            text,
                            status,
                            isLast,
                        }: FlowChartItem & { isLast: boolean }) => {
-    const { background, text: textColor, border } = statusColors[status] || defaultColor;
+    const {background, text: textColor, border} = statusColors[status] || defaultColor;
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
             <div
                 style={{
                     minWidth: '100px',
@@ -55,16 +55,7 @@ const FlowChartNode = ({
 };
 
 export default function StatusBasedFlowChart({
-                                                 items = [
-                                                     { text: 'PPIC Planning', status: 'done' },
-                                                     { text: 'Work Order Creation', status: 'done' },
-                                                     { text: 'Material Request', status: 'active' },
-                                                     { text: 'Material Transfer', status: 'disabled' },
-                                                     { text: 'Production', status: 'disabled' },
-                                                     { text: 'Quality Check', status: 'disabled' },
-                                                     { text: 'Packaging', status: 'disabled' },
-                                                     { text: 'Dispatch', status: 'disabled' },
-                                                 ],
+                                                 items = [],
                                              }: { items?: FlowChartItem[] }) {
     if (items.length === 0) {
         return (
@@ -78,7 +69,7 @@ export default function StatusBasedFlowChart({
                     textAlign: 'center',
                 }}
             >
-                <p style={{ color: '#6b7280' }}>No items to display in the flow chart.</p>
+                <p style={{color: '#6b7280'}}>No items to display in the flow chart.</p>
             </div>
         );
     }
