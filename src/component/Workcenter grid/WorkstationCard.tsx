@@ -1,41 +1,56 @@
-import { CheckCircle, XCircle, AlertTriangle, Calendar, Box } from "lucide-react"
+import { CheckCircle, XCircle, AlertTriangle, PauseCircle, Wrench, Settings, Calendar, Box } from "lucide-react";
 
 interface WorkstationCardProps {
     workstation: {
-        id: string
-        name: string
-        status: "online" | "offline" | "maintenance"
-        workCenter: string
-        lastMaintenance: string
-    }
+        id: string;
+        name: string;
+        status: "online" | "offline" | "maintenance" | "problem" | "idle" | "setup";
+        workCenter: string;
+        lastMaintenance: string;
+    };
 }
 
+
 export default function WorkstationCard({ workstation }: WorkstationCardProps) {
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case "online":
-                return "#10B981"
-            case "offline":
-                return "#EF4444"
+    const getStatusColor = (status: string): string => {
+        switch (status.toLowerCase()) {
+            case "online": // For production
+                return "#10B981"; // Green
+            case "offline": // For off
+                return "#9CA3AF"; // Gray (representing "off")
+            case "problem":
+                return "#EF4444"; // Red (representing an issue or problem)
             case "maintenance":
-                return "#F59E0B"
+                return "#F59E0B"; // Amber (maintenance status)
+            case "idle":
+                return "#3B82F6"; // Blue (waiting or inactive)
+            case "setup":
+                return "#8B5CF6"; // Purple (setup or configuration)
             default:
-                return "#6B7280"
+                return "#6B7280"; // Dark Gray (unknown or unrecognized statuses)
         }
-    }
+    };
+
 
     const getStatusIcon = (status: string) => {
-        switch (status) {
-            case "online":
-                return <CheckCircle style={{ width: "1.5rem", height: "1.5rem" }} />
-            case "offline":
-                return <XCircle style={{ width: "1.5rem", height: "1.5rem" }} />
+        switch (status.toLowerCase()) {
+            case "online": // For production
+                return <CheckCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+            case "offline": // For off
+                return <XCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+            case "problem":
+                return <AlertTriangle style={{ width: "1.5rem", height: "1.5rem" }} />;
             case "maintenance":
-                return <AlertTriangle style={{ width: "1.5rem", height: "1.5rem" }} />
+                return <Wrench style={{ width: "1.5rem", height: "1.5rem" }} />;
+            case "idle":
+                return <PauseCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+            case "setup":
+                return <Settings style={{ width: "1.5rem", height: "1.5rem" }} />;
             default:
-                return null
+                return null; // Return null if status is unrecognized
         }
-    }
+    };
+
 
     return (
         <button
