@@ -4,7 +4,7 @@ interface WorkstationCardProps {
     workstation: {
         id: string;
         name: string;
-        status: "online" | "offline" | "maintenance" | "problem" | "idle" | "setup";
+        status: "production" | "off" | "maintenance" | "problem" | "idle" | "setup";
         workCenter: string;
         lastMaintenance: string;
     };
@@ -14,9 +14,9 @@ interface WorkstationCardProps {
 export default function WorkstationCard({ workstation }: WorkstationCardProps) {
     const getStatusColor = (status: string): string => {
         switch (status.toLowerCase()) {
-            case "online": // For production
+            case "production": // For production
                 return "#10B981"; // Green
-            case "offline": // For off
+            case "off": // For off
                 return "#9CA3AF"; // Gray (representing "off")
             case "problem":
                 return "#EF4444"; // Red (representing an issue or problem)

@@ -2,11 +2,11 @@ import WorkstationCard from "./WorkstationCard"
 import {useEffect, useState} from "react";
 
 interface Workstation {
-    id: string
-    name: string
-    status: "online" | "offline" | "maintenance"
-    workCenter: string
-    lastMaintenance: string
+    id: string;
+    name: string;
+    status: "production" | "off" | "maintenance" | "problem" | "idle" | "setup";
+    workCenter: string;
+    lastMaintenance: string;
 }
 
 // frappe.db.get_list("Workstation", {
