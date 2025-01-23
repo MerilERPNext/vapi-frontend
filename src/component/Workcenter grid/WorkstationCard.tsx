@@ -35,17 +35,17 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
     const getStatusIcon = (status: string) => {
         switch (status.toLowerCase()) {
             case "production": // For production
-                return <CheckCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <CheckCircle style={{ width: "1rem", height: "1rem" }} />;
             case "off": // For off
-                return <XCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <XCircle style={{ width: "1rem", height: "1rem" }} />;
             case "problem":
-                return <AlertTriangle style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <AlertTriangle style={{ width: "1rem", height: "1rem" }} />;
             case "maintenance":
-                return <Wrench style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <Wrench style={{ width: "1rem", height: "1rem" }} />;
             case "idle":
-                return <PauseCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <PauseCircle style={{ width: "1rem", height: "1rem" }} />;
             case "setup":
-                return <Settings style={{ width: "1.5rem", height: "1.5rem" }} />;
+                return <Settings style={{ width: "1rem", height: "1rem" }} />;
             default:
                 return null; // Return null if status is unrecognized
         }
@@ -84,6 +84,7 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
                         fontSize: "1.25rem",
                         fontWeight: "600",
                         color: "#1f2937",
+                        textAlign: "left",
                     }}
                 >
                     {workstation.name}
@@ -96,7 +97,7 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
                     }}
                 >
           {getStatusIcon(workstation.status)}
-                    <span style={{ marginLeft: "0.5rem", textTransform: "capitalize" }}>{workstation.status}</span>
+                    <span style={{ marginLeft: "0.3rem", textTransform: "capitalize" }}>{workstation.status}</span>
         </span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
