@@ -168,7 +168,7 @@ interface Workstation {
 
 function convertToWorkstations(data: any[]): Workstation[] {
     return data.map((item, index) => ({
-        id: (index + 1).toString(), // Assign a sequential ID starting from 1
+        id: item.name, // Assign a sequential ID starting from 1
         name: item.workstation_name || `Unnamed Workstation ${index + 1}`,
         status: item.status.toLowerCase() === "production" ? "online" : "offline", // Map "Production" to "online"
         workCenter: item.plant_floor || "Unknown Work Center", // Default if plant_floor is null
