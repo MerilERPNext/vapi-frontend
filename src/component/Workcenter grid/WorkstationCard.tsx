@@ -14,45 +14,80 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
     const getStatusColor = (status: string) => {
         switch (status) {
             case "online":
-                return "text-green-500"
+                return "#10B981"
             case "offline":
-                return "text-red-500"
+                return "#EF4444"
             case "maintenance":
-                return "text-yellow-500"
+                return "#F59E0B"
             default:
-                return "text-gray-500"
+                return "#6B7280"
         }
     }
 
     const getStatusIcon = (status: string) => {
         switch (status) {
             case "online":
-                return <CheckCircle className="w-6 h-6" />
+                return <CheckCircle style={{ width: "1.5rem", height: "1.5rem" }} />
             case "offline":
-                return <XCircle className="w-6 h-6" />
+                return <XCircle style={{ width: "1.5rem", height: "1.5rem" }} />
             case "maintenance":
-                return <AlertTriangle className="w-6 h-6" />
+                return <AlertTriangle style={{ width: "1.5rem", height: "1.5rem" }} />
             default:
                 return null
         }
     }
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-gray-800">{workstation.name}</h2>
-                <span className={`flex items-center ${getStatusColor(workstation.status)}`}>
+        <div
+            style={{
+                backgroundColor: "white",
+                borderRadius: "0.5rem",
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                padding: "1.5rem",
+                transition: "transform 0.3s ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)"
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)"
+            }}
+        >
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "1rem",
+                }}
+            >
+                <h2
+                    style={{
+                        fontSize: "1.25rem",
+                        fontWeight: "600",
+                        color: "#1f2937",
+                    }}
+                >
+                    {workstation.name}
+                </h2>
+                <span
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        color: getStatusColor(workstation.status),
+                    }}
+                >
           {getStatusIcon(workstation.status)}
-                    <span className="ml-2 capitalize">{workstation.status}</span>
+                    <span style={{ marginLeft: "0.5rem", textTransform: "capitalize" }}>{workstation.status}</span>
         </span>
             </div>
-            <div className="space-y-2">
-                <div className="flex items-center text-gray-600">
-                    <Box className="w-5 h-5 mr-2" />
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <div style={{ display: "flex", alignItems: "center", color: "#4B5563" }}>
+                    <Box style={{ width: "1.25rem", height: "1.25rem", marginRight: "0.5rem" }} />
                     <span>Work Center: {workstation.workCenter}</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                    <Calendar className="w-5 h-5 mr-2" />
+                <div style={{ display: "flex", alignItems: "center", color: "#4B5563" }}>
+                    <Calendar style={{ width: "1.25rem", height: "1.25rem", marginRight: "0.5rem" }} />
                     <span>Last Maintenance: {workstation.lastMaintenance}</span>
                 </div>
             </div>

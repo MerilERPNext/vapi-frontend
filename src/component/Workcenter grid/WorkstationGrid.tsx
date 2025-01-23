@@ -1,6 +1,5 @@
 import WorkstationCard from "./WorkstationCard"
 
-// Define the structure of a workstation
 interface Workstation {
     id: string
     name: string
@@ -9,7 +8,6 @@ interface Workstation {
     lastMaintenance: string
 }
 
-// Sample data (in a real application, this would come from an API or database)
 const workstations: Workstation[] = [
     { id: "1", name: "Machine A1", status: "online", workCenter: "Assembly", lastMaintenance: "2023-05-15" },
     { id: "2", name: "Machine B2", status: "offline", workCenter: "Packaging", lastMaintenance: "2023-06-01" },
@@ -21,9 +19,30 @@ const workstations: Workstation[] = [
 
 export default function WorkstationGrid() {
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">Workstation Status</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+            style={{
+                maxWidth: "1200px",
+                margin: "0 auto",
+                padding: "2rem 1rem",
+            }}
+        >
+            <h1
+                style={{
+                    fontSize: "1.875rem",
+                    fontWeight: "bold",
+                    marginBottom: "1.5rem",
+                    color: "#1f2937",
+                }}
+            >
+                Workstation Status
+            </h1>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                    gap: "1.5rem",
+                }}
+            >
                 {workstations.map((workstation) => (
                     <WorkstationCard key={workstation.id} workstation={workstation} />
                 ))}
