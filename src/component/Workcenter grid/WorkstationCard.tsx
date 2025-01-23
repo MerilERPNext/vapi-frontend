@@ -38,7 +38,7 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
     }
 
     return (
-        <div
+        <button
             style={{
                 backgroundColor: "white",
                 borderRadius: "0.5rem",
@@ -51,6 +51,9 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
             }}
             onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "scale(1)"
+            }}
+            onClick={()=>{
+                window.frappe.set_route("form", "Workstation", workstation.id)
             }}
         >
             <div
@@ -91,7 +94,7 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
                     <span>Last Maintenance: {workstation.lastMaintenance}</span>
                 </div>
             </div>
-        </div>
+        </button>
     )
 }
 

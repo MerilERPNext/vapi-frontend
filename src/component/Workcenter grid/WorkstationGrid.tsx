@@ -178,16 +178,16 @@ function convertToWorkstations(data: any[]): Workstation[] {
 
 export default function WorkstationGrid() {
     const [data, setData] = useState<any[]>([]);
-    useEffect(()=>{
+    useEffect(() => {
         window.frappe.db.get_list("Workstation", {
-    filters: {
-        "workstation_type": window.cur_frm.doc.name
-    },
-    fields: "*"
-}).then((res: any)=>{
-    setData(res)
-})
-    },[])
+            filters: {
+                "workstation_type": window.cur_frm.doc.name
+            },
+            fields: "*"
+        }).then((res: any) => {
+            setData(res)
+        })
+    }, [])
     return (
         <div
             style={{
@@ -204,7 +204,7 @@ export default function WorkstationGrid() {
                 }}
             >
                 {convertToWorkstations(data).map((workstation) => (
-                    <WorkstationCard key={workstation.id} workstation={workstation} />
+                    <WorkstationCard key={workstation.id} workstation={workstation}/>
                 ))}
             </div>
         </div>
