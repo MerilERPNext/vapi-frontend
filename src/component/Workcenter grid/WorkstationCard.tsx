@@ -34,9 +34,9 @@ export default function WorkstationCard({ workstation }: WorkstationCardProps) {
 
     const getStatusIcon = (status: string) => {
         switch (status.toLowerCase()) {
-            case "online": // For production
+            case "production": // For production
                 return <CheckCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
-            case "offline": // For off
+            case "off": // For off
                 return <XCircle style={{ width: "1.5rem", height: "1.5rem" }} />;
             case "problem":
                 return <AlertTriangle style={{ width: "1.5rem", height: "1.5rem" }} />;
