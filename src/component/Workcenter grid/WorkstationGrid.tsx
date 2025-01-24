@@ -183,7 +183,9 @@ export default function WorkstationGrid() {
             filters: {
                 "workstation_type": window.cur_frm.doc.name
             },
-            fields: "*"
+            fields: "*",
+            limit: 10000,
+            order_by: "modified desc"
         }).then((res: any) => {
             setData(res)
         })
