@@ -171,7 +171,7 @@ function convertToWorkstations(data: any[]): Workstation[] {
         id: item.name, // Assign a sequential ID starting from 1
         name: item.workstation_name || `Unnamed Workstation ${index + 1}`,
         status: item.status.toLowerCase(), // Map "Production" to "online"
-        workCenter: item.plant_floor || "Unknown Work Center", // Default if plant_floor is null
+        workCenter: window.cur_frm.doc.name || "Unknown Work Center", // Default if plant_floor is null
         lastMaintenance: item.modified.split(" ")[0], // Use the date part of the "modified" field
     }));
 }
