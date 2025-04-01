@@ -1,0 +1,266 @@
+/* Enhanced Job Cards Styling with woi- prefix */
+/* Removed Google Fonts import - now using Next.js font system */
+
+.woi-dialog-container {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.woi-dialog-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.woi-dialog-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #1e293b;
+}
+
+.woi-dialog-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+.woi-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.woi-card {
+    position: relative;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.woi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.woi-card-open {
+    border-top: 4px solid #3b82f6;
+}
+
+.woi-card-completed {
+    border-top: 4px solid #10b981;
+}
+
+.woi-card-sequence-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.woi-card-content {
+    padding: 20px 16px 16px;
+}
+
+.woi-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding-left: 30px; /* Make space for the sequence badge */
+}
+
+.woi-card-title-area {
+    flex: 1;
+}
+
+.woi-card-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.woi-card-operation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.woi-operation-code {
+    background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+    color: #1e40af;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.woi-operation-description {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.woi-card-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.woi-status-open {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    color: #2563eb;
+}
+
+.woi-status-completed {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    color: #059669;
+}
+
+.woi-status-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.woi-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.woi-card-workstation,
+.woi-card-schedule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #475569;
+}
+
+.woi-icon {
+    color: #64748b;
+}
+
+.woi-card-quantities-container {
+    display: flex;
+    gap: 12px;
+}
+
+.woi-quantity-box {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.woi-quantity-required {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+.woi-quantity-completed {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.woi-quantity-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.woi-quantity-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.woi-quantity-required .woi-quantity-value {
+    color: #334155;
+}
+
+.woi-quantity-completed .woi-quantity-value {
+    color: #059669;
+}
+
+.woi-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #64748b;
+}
+
+.woi-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e2e8f0;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: woi-spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes woi-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.woi-error {
+    text-align: center;
+    padding: 30px;
+    font-size: 15px;
+    color: #ef4444;
+    background-color: #fee2e2;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* For very small screens */
+@media (max-width: 400px) {
+    .woi-dialog-container {
+        padding: 16px;
+    }
+
+    .woi-card-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .woi-card-status {
+        align-self: flex-start;
+    }
+
+    .woi-card-quantities-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+

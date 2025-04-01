@@ -6,6 +6,8 @@ import FormbuilderComponent from "./component/formBuilder/formbuilderComponent.t
 import DashboardPPComponent from "./component/dashboardPPComponent/DashboardPPComponent.tsx";
 import StatusBasedFlowChart from "./component/flowChart/flowChart.tsx";
 import WorkstationGrid from "./component/Workcenter grid/WorkstationGrid.tsx";
+import QualityControl from "./component/qualityControlComponent/QualityControl.tsx";
+import WorkOrderInfo from "./component/WorkOrderInfo/WorkOrderInfo.tsx";
 
 declare global {
     interface Window {
@@ -17,6 +19,12 @@ declare global {
 }
 
 customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
+customElements.define('quality-control', reactToWebComponent(QualityControl, React, ReactDOM))
+customElements.define('work-order-info', reactToWebComponent(WorkOrderInfo, React, ReactDOM, {
+    props: {
+        "name": "string"
+    }
+}))
 customElements.define('dashboard-pp-component', reactToWebComponent(DashboardPPComponent, React, ReactDOM))
 customElements.define('flow-chart', reactToWebComponent(StatusBasedFlowChart, React, ReactDOM))
 customElements.define('workstation-grid', reactToWebComponent(WorkstationGrid, React, ReactDOM))
