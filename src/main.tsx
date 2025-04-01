@@ -6,7 +6,6 @@ import FormbuilderComponent from "./component/formBuilder/formbuilderComponent.t
 import DashboardPPComponent from "./component/dashboardPPComponent/DashboardPPComponent.tsx";
 import StatusBasedFlowChart from "./component/flowChart/flowChart.tsx";
 import WorkstationGrid from "./component/Workcenter grid/WorkstationGrid.tsx";
-import QualityControl from "./component/qualityControlComponent/QualityControl.tsx";
 import WorkOrderInfo from "./component/WorkOrderInfo/WorkOrderInfo.tsx";
 
 declare global {
@@ -19,7 +18,6 @@ declare global {
 }
 
 customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
-customElements.define('quality-control', reactToWebComponent(QualityControl, React, ReactDOM))
 customElements.define('work-order-info', reactToWebComponent(WorkOrderInfo, React, ReactDOM, {
     props: {
         "name": "string"
