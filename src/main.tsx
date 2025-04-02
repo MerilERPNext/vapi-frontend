@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reactToWebComponent from 'react-to-webcomponent'
-import FormbuilderComponent from "./component/formBuilder/formbuilderComponent.tsx";
+// import FormbuilderComponent from "./component/formBuilder/formbuilderComponent.tsx";
 import DashboardPPComponent from "./component/dashboardPPComponent/DashboardPPComponent.tsx";
 import StatusBasedFlowChart from "./component/flowChart/flowChart.tsx";
 import WorkstationGrid from "./component/Workcenter grid/WorkstationGrid.tsx";
@@ -17,7 +17,7 @@ declare global {
     }
 }
 
-customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
+// customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
 customElements.define('work-order-info', reactToWebComponent(WorkOrderInfo, React, ReactDOM, {
     props: {
         "name": "string"
