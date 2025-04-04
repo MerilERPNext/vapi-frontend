@@ -1,8 +1,8 @@
 /* Enhanced Job Cards Styling with woi- prefix */
-/* Removed Google Fonts import - now using Next.js font system */
+/* Fixed flexbox with flex-wrap for card layout */
 
 .woi-dialog-container {
-    max-width: 550px;
+    width: 100%;
     margin: 0 auto;
     padding: 24px;
     background-color: #f8fafc;
@@ -10,6 +10,58 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-height: 85vh;
     overflow-y: auto;
+}
+
+/* Base styles for cards stack - column for mobile */
+.woi-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Desktop view with flex-wrap */
+@media (min-width: 768px) {
+    .woi-dialog-container {
+        padding: 32px;
+    }
+
+    .woi-cards-stack {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .woi-card {
+        flex: 0 0 calc(50% - 10px);
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .woi-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .woi-card-quantities-container {
+        margin-top: auto;
+    }
+}
+
+/* For larger screens - 3 cards per row */
+@media (min-width: 1024px) {
+    .woi-card {
+        flex: 0 0 calc(33.333% - 14px);
+    }
+}
+
+/* For extra large screens - 4 cards per row */
+@media (min-width: 1536px) {
+    .woi-card {
+        flex: 0 0 calc(25% - 15px);
+    }
 }
 
 .woi-dialog-header {
@@ -28,12 +80,6 @@
     font-size: 14px;
     color: #64748b;
     margin: 0;
-}
-
-.woi-cards-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
 }
 
 .woi-card {
@@ -261,6 +307,55 @@
     .woi-card-quantities-container {
         flex-direction: column;
         gap: 8px;
+    }
+}
+
+/* Add a toggle button for desktop view */
+.woi-view-toggle {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .woi-view-toggle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+
+    .woi-view-button {
+        background: #f1f5f9;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 0 4px;
+        display: flex;
+        align-items: center;
+    }
+
+    .woi-view-button.woi-active {
+        background: #3b82f6;
+        color: white;
+    }
+
+    .woi-view-button:hover:not(.woi-active) {
+        background: #e2e8f0;
+    }
+
+    /* List view overrides */
+    .woi-list-view .woi-cards-stack {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .woi-list-view .woi-card {
+        flex: 0 0 100%;
+        width: 100%;
     }
 }
 

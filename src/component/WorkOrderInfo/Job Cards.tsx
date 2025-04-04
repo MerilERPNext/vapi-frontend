@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import "./style.css";
-import {ClipboardCheck, AlertCircle, Clock, MapPin} from "lucide-react"
+import {ClipboardCheck, AlertCircle, Clock, MapPin, Grid, List} from "lucide-react"
 
 interface JobCard {
     name: string
@@ -19,6 +19,8 @@ export default function JobCards({name}: { name: string }) {
     const [jobCards, setJobCards] = useState<JobCard[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+
 
     useEffect(() => {
         // In a real application, this would be an API call
@@ -142,10 +144,29 @@ export default function JobCards({name}: { name: string }) {
     }
 
     return (
-        <div className="woi-dialog-container">
+        <div className={`woi-dialog-container ${viewMode === "list" ? "woi-list-view" : ""}`}>
             <div className="woi-dialog-header">
-                <h1 className="woi-dialog-title">Job Cards</h1>
+                <h1 className="woi-dialog-title">Manufacturing Job Cards</h1>
+                <p className="woi-dialog-subtitle">Sorted by sequence</p>
             </div>
+
+            <div className="woi-view-toggle">
+                <button
+                    className={`woi-view-button ${viewMode === "grid" ? "woi-active" : ""}`}
+                    onClick={() => setViewMode("grid")}
+                >
+                    <Grid size={16} className="mr-2"/>
+                    Grid View
+                </button>
+                <button
+                    className={`woi-view-button ${viewMode === "list" ? "woi-active" : ""}`}
+                    onClick={() => setViewMode("list")}
+                >
+                    <List size={16} className="mr-2"/>
+                    List View
+                </button>
+            </div>
+
             <div className="woi-cards-stack">
                 {jobCards.map((card) => (
                     <div
