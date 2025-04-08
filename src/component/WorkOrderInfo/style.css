@@ -131,6 +131,8 @@
 
 .woi-card-title-area {
     flex: 1;
+    padding-left: 12px;
+    padding-top: 0;
 }
 
 .woi-card-name {

@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import "./style.css";
-import {ClipboardCheck, AlertCircle, Clock, MapPin, Grid, List} from "lucide-react"
+import {ClipboardCheck, AlertCircle, Clock, MapPin, Grid, List, ExternalLink} from "lucide-react"
 
 interface JobCard {
     name: string
@@ -177,7 +177,18 @@ export default function JobCards({name}: { name: string }) {
                         <div className="woi-card-content">
                             <div className="woi-card-header">
                                 <div className="woi-card-title-area">
-                                    <h2 className="woi-card-name">{card.name}</h2>
+                                    <a onClick={()=>{
+                                    window.frappe.set_route(["Form", "Job Card", card.name])
+                                }} style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}>
+                                    <h2 className="woi-card-name" style={{
+                                        display: "flex",
+                                        alignItems: "center"
+                                    }}>{card.name}</h2>
+                                    <ExternalLink size={"15"} />
+                                </a>
                                     <div className="woi-card-operation">
                                         <span className="woi-operation-code">{card.operation}</span>
                                         <span
