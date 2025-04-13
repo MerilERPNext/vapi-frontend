@@ -1,5 +1,8 @@
 /* Enhanced Job Cards Styling with woi- prefix */
 /* Fixed flexbox with flex-wrap for card layout */
+work-order-info {
+    flex-grow: 1;
+}
 
 .woi-dialog-container {
     width: 100%;
@@ -8,7 +11,7 @@
     background-color: #f8fafc;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-height: 85vh;
+    /* max-height: 85vh; */
     overflow-y: auto;
 }
 
@@ -17,6 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    height: auto;
 }
 
 /* Desktop view with flex-wrap */
@@ -126,13 +130,12 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 12px;
-    padding-left: 30px; /* Make space for the sequence badge */
+    padding-left: 30px;
+    /* Make space for the sequence badge */
 }
 
 .woi-card-title-area {
     flex: 1;
-    padding-left: 12px;
-    padding-top: 0;
 }
 
 .woi-card-name {
@@ -213,6 +216,182 @@
     color: #64748b;
 }
 
+/* Employee section styling */
+.woi-card-employees {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.woi-employees-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 6px 0;
+}
+
+.woi-employees-header:hover {
+    background-color: #f8fafc;
+    border-radius: 6px;
+}
+
+.woi-employees-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.woi-employees-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 4px;
+    color: #64748b;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.woi-employees-toggle:hover {
+    background: #e2e8f0;
+}
+
+.woi-employee-avatars {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.woi-employee-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: -8px;
+    border: 2px solid white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s;
+}
+
+.woi-employee-avatar:hover {
+    transform: translateY(-3px);
+    z-index: 2;
+}
+
+.woi-avatar-more {
+    background-color: #94a3b8;
+}
+
+.woi-employee-list {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    animation: woi-fade-in 0.3s ease-in-out;
+}
+
+@keyframes woi-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.woi-employee-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    margin-bottom: 4px;
+}
+
+.woi-employee-item:hover {
+    background-color: #f1f5f9;
+}
+
+.woi-employee-avatar-small {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.woi-employee-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.woi-employee-id {
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.woi-employee-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    color: #64748b;
+    flex-wrap: wrap;
+}
+
+.woi-employee-completed {
+    display: inline-flex;
+    align-items: center;
+}
+
+.woi-employee-docstatus {
+    display: inline-flex;
+    align-items: center;
+}
+
+.woi-employee-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #64748b;
+    background: #e2e8f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.woi-time-icon {
+    color: #64748b;
+}
+
 .woi-card-quantities-container {
     display: flex;
     gap: 12px;
@@ -276,6 +455,7 @@
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -309,6 +489,15 @@
     .woi-card-quantities-container {
         flex-direction: column;
         gap: 8px;
+    }
+
+    .woi-employee-item {
+        flex-wrap: wrap;
+    }
+
+    .woi-employee-time {
+        margin-left: 38px;
+        margin-top: 4px;
     }
 }
 
@@ -359,5 +548,13 @@
         flex: 0 0 100%;
         width: 100%;
     }
-}
 
+    /* Adjust employee section for list view */
+    .woi-list-view .woi-employee-item {
+        padding: 6px 10px;
+    }
+
+    .woi-list-view .woi-employee-list {
+        max-width: 600px;
+    }
+}
