@@ -7,6 +7,8 @@ import DashboardPPComponent from "./component/dashboardPPComponent/DashboardPPCo
 import StatusBasedFlowChart from "./component/flowChart/flowChart.tsx";
 import WorkstationGrid from "./component/Workcenter grid/WorkstationGrid.tsx";
 import WorkOrderInfo from "./component/WorkOrderInfo/WorkOrderInfo.tsx";
+import ApprovalWidget from "./component/ApprovalWidget";
+import FormbuilderComponent from "./component/formBuilder/formbuilderComponent.tsx";
 
 declare global {
     interface Window {
@@ -17,7 +19,7 @@ declare global {
     }
 }
 
-// customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
+customElements.define('custom-form-builder', reactToWebComponent(FormbuilderComponent, React, ReactDOM))
 customElements.define('work-order-info', reactToWebComponent(WorkOrderInfo, React, ReactDOM, {
     props: {
         "name": "string"
@@ -26,3 +28,4 @@ customElements.define('work-order-info', reactToWebComponent(WorkOrderInfo, Reac
 customElements.define('dashboard-pp-component', reactToWebComponent(DashboardPPComponent, React, ReactDOM))
 customElements.define('flow-chart', reactToWebComponent(StatusBasedFlowChart, React, ReactDOM))
 customElements.define('workstation-grid', reactToWebComponent(WorkstationGrid, React, ReactDOM))
+customElements.define('approval-widget', reactToWebComponent(ApprovalWidget, React, ReactDOM))

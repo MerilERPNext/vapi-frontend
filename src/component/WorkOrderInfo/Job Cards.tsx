@@ -1,6 +1,16 @@
-import { useState, useEffect, useRef } from "react"
+import {useState, useEffect, useRef} from "react"
 import "./style.css";
-import { ClipboardCheck, AlertCircle, Clock, MapPin, ExternalLink, Timer, Users, ChevronUp, ChevronDown } from "lucide-react"
+import {
+    ClipboardCheck,
+    AlertCircle,
+    Clock,
+    MapPin,
+    ExternalLink,
+    Timer,
+    Users,
+    ChevronUp,
+    ChevronDown
+} from "lucide-react"
 
 interface JobCardTimeLog {
     name: string
@@ -19,6 +29,7 @@ interface JobCardTimeLog {
     parenttype: string
     doctype: string
 }
+
 interface JobCard {
     name: string
     operation: string
@@ -35,8 +46,9 @@ interface JobCard {
     time_logs: JobCardTimeLog[]
 
 }
+
 const refinedData = (timelogs: Array<any>) => {
-    let arr: Array<JobCardTimeLog> = [];
+    const arr: Array<JobCardTimeLog> = [];
     for (const element of timelogs) {
         const index = arr.findIndex((e) => e.employee == element.employee)
         if (index !== -1) {
@@ -84,14 +96,13 @@ const getAvatarColor = (id: string) => {
     const hash = id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
     return colors[hash % colors.length]
 }
-export default function JobCards({ name }: { name: string }) {
+export default function JobCards({name}: { name: string }) {
     const [jobCards, setJobCards] = useState<JobCard[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
     const ref = useRef<HTMLDivElement>(null)
     const [expandedEmployees, setExpandedEmployees] = useState<Record<string, boolean>>({})
-
 
 
     const toggleEmployeeList = (cardName: string) => {
@@ -102,6 +113,11 @@ export default function JobCards({ name }: { name: string }) {
     }
 
     useEffect(() => {
+        if (!window?.frappe?.db) {
+            setLoading(false)
+
+            return;
+        }
         setLoading(true)
         fetch(
             `/api/method/chatnext_manufacturing.config.py.work_order_methods.get_full_job_cards_by_work_order?work_order=${name}`,
@@ -111,8 +127,8 @@ export default function JobCards({ name }: { name: string }) {
             }
         ).then(async (res) => {
             const data = await res.json()
-            let newArr = []
-            for (const element of data?.message) {
+            const newArr = []
+            for (const element of data.message) {
                 element["time_logs"] = refinedData(element.time_logs)
                 newArr.push(element)
             }
@@ -128,30 +144,37 @@ export default function JobCards({ name }: { name: string }) {
 
     }, [name])
 
+    const handleView = (w: number) => {
+
+        console.log(w);
+
+        if (w < 550) {
+            setViewMode('list')
+        } else {
+            setViewMode('grid')
+        }
+
+    }
+    const ro = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+        console.log(entries)
+        for (const entry of entries) {
+            handleView(entry.contentRect.width)
+        }
+    })
 
     useEffect(() => {
+        if (!ref.current)
+            return
 
+        ro.observe(ref.current);
 
-        const handleView = () => {
-            console.log(ref);
-
-            if (ref.current) {
-                const w = ref.current.clientWidth
-                console.log(w);
-
-                if (w < 550) {
-                    setViewMode('list')
-                } else {
-                    setViewMode('grid')
-                }
-            }
-
+        return () => {
+            if (!ref.current)
+                return
+            ro.unobserve(ref.current);
+            ro.disconnect();
         }
-        setTimeout(() => {
-            handleView()
-        }, 100);
-
-    }, [ref.current])
+    }, [ro])
 
 
     // useEffect(() => {
@@ -302,7 +325,7 @@ export default function JobCards({ name }: { name: string }) {
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString)
-        return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        return date.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})
     }
 
     if (loading) {
@@ -362,7 +385,7 @@ export default function JobCards({ name }: { name: string }) {
                                             display: "flex",
                                             alignItems: "center"
                                         }}>{card.name}</h2>
-                                        <ExternalLink size={"15"} />
+                                        <ExternalLink size={"15"}/>
                                     </a>
                                     <div className="woi-card-operation">
                                         <span className="woi-operation-code">{card.operation}</span>
@@ -374,9 +397,9 @@ export default function JobCards({ name }: { name: string }) {
                                     className={`woi-card-status ${card.status === "Completed" ? "woi-status-completed" : "woi-status-open"}`}
                                 >
                                     {card.status === "Completed" ? (
-                                        <ClipboardCheck className="woi-status-icon" />
+                                        <ClipboardCheck className="woi-status-icon"/>
                                     ) : (
-                                        <AlertCircle className="woi-status-icon" />
+                                        <AlertCircle className="woi-status-icon"/>
                                     )}
                                     <span>{card.status}</span>
                                 </div>
@@ -384,12 +407,12 @@ export default function JobCards({ name }: { name: string }) {
 
                             <div className="woi-card-details">
                                 <div className="woi-card-workstation">
-                                    <MapPin size={14} className="woi-icon" />
+                                    <MapPin size={14} className="woi-icon"/>
                                     <span>{card.workstation}</span>
                                 </div>
 
                                 <div className="woi-card-schedule">
-                                    <Clock size={14} className="woi-icon" />
+                                    <Clock size={14} className="woi-icon"/>
                                     <span>
                                         {formatDate(card.expected_start_date)} - {formatDate(card.expected_end_date)}
                                     </span>
@@ -401,11 +424,12 @@ export default function JobCards({ name }: { name: string }) {
                                 <div className="woi-card-employees">
                                     <div className="woi-employees-header" onClick={() => toggleEmployeeList(card.name)}>
                                         <div className="woi-employees-title">
-                                            <Users size={14} className="woi-icon" />
+                                            <Users size={14} className="woi-icon"/>
                                             <span>Assigned Employees ({card.time_logs.length})</span>
                                         </div>
                                         <button className="woi-employees-toggle">
-                                            {expandedEmployees[card.name] ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                                            {expandedEmployees[card.name] ? <ChevronUp size={14}/> :
+                                                <ChevronDown size={14}/>}
                                         </button>
                                     </div>
 
@@ -415,7 +439,7 @@ export default function JobCards({ name }: { name: string }) {
                                             <div
                                                 key={timeLog.name}
                                                 className={`woi-employee-avatar`}
-                                                style={{ backgroundColor: getAvatarColor(timeLog.employee) }}
+                                                style={{backgroundColor: getAvatarColor(timeLog.employee)}}
                                                 title={`Employee ID: ${card.employee_details[timeLog.employee]?.employee_name} (${formatTimeInMins(timeLog.time_in_mins)})`}
                                             >
                                                 <span>{card.employee_details[timeLog.employee]?.employee_name.substring(0, 2)}</span>
@@ -434,20 +458,23 @@ export default function JobCards({ name }: { name: string }) {
                                             {card.time_logs.map((timeLog) => {
                                                 return (
                                                     <div key={timeLog.name} className="woi-employee-item">
-                                                        <div className={`woi-employee-avatar-small`} style={{ backgroundColor: getAvatarColor(timeLog.employee) }}>
+                                                        <div className={`woi-employee-avatar-small`}
+                                                             style={{backgroundColor: getAvatarColor(timeLog.employee)}}>
                                                             <span>{card.employee_details[timeLog.employee]?.employee_name.substring(0, 2)}</span>
                                                         </div>
                                                         <div className="woi-employee-info">
-                                                            <div className="woi-employee-id">Employee: {card.employee_details[timeLog.employee]?.employee_name}</div>
+                                                            <div
+                                                                className="woi-employee-id">Employee: {card.employee_details[timeLog.employee]?.employee_name}</div>
                                                             <div className="woi-employee-meta">
-                                                                <span className="woi-employee-completed">Completed: {timeLog.completed_qty}</span>
+                                                                <span
+                                                                    className="woi-employee-completed">Completed: {timeLog.completed_qty}</span>
                                                                 <span className="woi-employee-docstatus">
                                                                     Status: {timeLog.docstatus === 1 ? "Active" : "Inactive"}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div className="woi-employee-time">
-                                                            <Timer size={12} className="woi-time-icon" />
+                                                            <Timer size={12} className="woi-time-icon"/>
                                                             <span>{formatTimeInMins(timeLog.time_in_mins)}</span>
                                                         </div>
                                                     </div>
