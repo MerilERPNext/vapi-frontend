@@ -139,7 +139,7 @@ export default function JobCards({ name }: { name: string }) {
                 const w = ref.current.clientWidth
                 console.log(w);
 
-                if (w < 480) {
+                if (w < 550) {
                     setViewMode('list')
                 } else {
                     setViewMode('grid')
