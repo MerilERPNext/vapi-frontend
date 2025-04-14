@@ -147,7 +147,9 @@ export default function JobCards({ name }: { name: string }) {
             }
 
         }
-        handleView()
+        setTimeout(() => {
+            handleView()
+        }, 100);
 
     }, [ref.current])
 
