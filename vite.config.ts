@@ -9,7 +9,7 @@ export default defineConfig(() => {
         server: {
             proxy: {
                 "/api": {
-                    target: "https://hybrow-manufacturing.frappe.cloud",
+                    target: "https://merilcardio-develop.bilakhiagroup.com",
                     changeOrigin: true,
                     rewrite: (path) => path.replace(/^\/api/, '/api'),
                 }
