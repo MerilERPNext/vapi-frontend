@@ -194,7 +194,6 @@ export default function JobCards({name = "MFG-WO-2025-00924"}: { name: string })
                 <h1 className="woi-dialog-title">Manufacturing Job Cards</h1>
                 <p className="woi-dialog-subtitle">Sorted by sequence</p>
             </div>
-
             <div className="woi-cards-stack">
                 {jobCards.map((card) => (
                     <div

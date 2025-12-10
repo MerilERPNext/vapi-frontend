@@ -13,6 +13,8 @@ work-order-info {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     /* max-height: 85vh; */
     overflow-y: auto;
+    container-type: inline-size;
+    container-name: job-cards-container;
 }
 
 /* Cards stack with flex-wrap - auto-sizes based on content */
@@ -39,11 +41,7 @@ work-order-info {
     margin-top: auto;
 }
 
-@media (min-width: 768px) {
-    .woi-dialog-container {
-        padding: 32px;
-    }
-
+@container job-cards-container (min-width: 768px) {
     .woi-cards-stack {
         gap: 20px;
     }
@@ -454,12 +452,8 @@ work-order-info {
     font-weight: 500;
 }
 
-/* For very small screens */
-@media (max-width: 400px) {
-    .woi-dialog-container {
-        padding: 16px;
-    }
-
+/* For small container widths */
+@container job-cards-container (max-width: 400px) {
     .woi-card-header {
         flex-direction: column;
         gap: 10px;
@@ -489,7 +483,7 @@ work-order-info {
     display: none;
 }
 
-@media (min-width: 768px) {
+@container job-cards-container (min-width: 768px) {
     .woi-view-toggle {
         display: flex;
         justify-content: center;
