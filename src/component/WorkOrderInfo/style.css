@@ -15,56 +15,37 @@ work-order-info {
     overflow-y: auto;
 }
 
-/* Base styles for cards stack - column for mobile */
+/* Cards stack with flex-wrap - auto-sizes based on content */
 .woi-cards-stack {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 16px;
-    height: auto;
 }
 
-/* Desktop view with flex-wrap */
+.woi-card {
+    flex: 1 1 300px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.woi-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.woi-card-quantities-container {
+    margin-top: auto;
+}
+
 @media (min-width: 768px) {
     .woi-dialog-container {
         padding: 32px;
     }
 
     .woi-cards-stack {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 20px;
-    }
-
-    .woi-card {
-        flex: 0 0 calc(50% - 10px);
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .woi-card-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .woi-card-quantities-container {
-        margin-top: auto;
-    }
-}
-
-/* For larger screens - 3 cards per row */
-@media (min-width: 1024px) {
-    .woi-card {
-        flex: 0 0 calc(33.333% - 14px);
-    }
-}
-
-/* For extra large screens - 4 cards per row */
-@media (min-width: 1536px) {
-    .woi-card {
-        flex: 0 0 calc(25% - 15px);
     }
 }
 
@@ -91,7 +72,7 @@ work-order-info {
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.2s ease;
 }
 
@@ -110,7 +91,7 @@ work-order-info {
 
 .woi-card-sequence-badge {
     position: absolute;
-    top: 12px;
+    top: 16px;
     left: 12px;
     background: #f1f5f9;
     color: #475569;
@@ -131,6 +112,7 @@ work-order-info {
     align-items: flex-start;
     margin-bottom: 12px;
     padding-left: 30px;
+    gap: 8px;
     /* Make space for the sequence badge */
 }
 
@@ -177,6 +159,7 @@ work-order-info {
     padding: 5px 10px;
     border-radius: 6px;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .woi-status-open {
